@@ -68,6 +68,13 @@ def main():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+                elif event.type == pygame.KEYDOWN:
+                    # Handle Cmd+Q (macOS) or Ctrl+Q (other systems)
+                    if event.key == pygame.K_q:
+                        keys = pygame.key.get_pressed()
+                        # Check for Cmd key (macOS) or Ctrl key (other systems)
+                        if keys[pygame.K_LMETA] or keys[pygame.K_RMETA] or keys[pygame.K_LCTRL] or keys[pygame.K_RCTRL]:
+                            sys.exit()
             
             updatable.update(dt)
 
